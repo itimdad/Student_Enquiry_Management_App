@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "AIT_STUDENT_ENQUIRIES")
-public class StudentEnquiry {
+public class StudentEnqEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +29,5 @@ public class StudentEnquiry {
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
-	private User user;
+	private UserDtlsEntity user;
 }

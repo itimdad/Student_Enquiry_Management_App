@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "AIT_USER_DTLS")
-public class User {
+public class UserDtlsEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,6 @@ public class User {
 	private String accountStatus;
 	
 	@OneToMany(mappedBy = "user")
-	private StudentEnquiry enquiry;
+	private StudentEnqEntity enquiry;
 
 }
