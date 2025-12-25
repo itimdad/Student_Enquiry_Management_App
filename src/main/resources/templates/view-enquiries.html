@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Student Enquiries</title>
+
+<!-- Bootstrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+	crossorigin="anonymous">
+
+</head>
+<body>
+
+	<div class="container">
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/"> <img src="images/logo1.png"
+					alt="MyShiksha Logo" class="img-fluid" style="max-height: 50px;">
+				</a>
+
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/dashboard">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/enquiry">Add
+								Enquiry</a></li>
+						<li class="nav-item"><a class="nav-link" href="/enquiries">View
+								Enquiry</a></li>
+						<li class="nav-item"><a class="nav-link disabled"
+							aria-disabled="true">Contact Us</a></li>
+					</ul>
+
+				</div>
+				<a href="#" class="btn btn-danger">Logout</a>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container mt-5">
+
+		<!-- Page Heading -->
+		<h3 class="text-center fw-bold mb-4">View Student Enquiries</h3>
+
+		<!-- Filters -->
+		<div class="row mb-4">
+
+			<div class="col-md-4">
+				<label class="form-label">Course</label> <select class="form-select">
+					<option>- Select -</option>
+				</select>
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Enquiry Status</label> <select
+					class="form-select">
+					<option>- Select -</option>
+				</select>
+			</div>
+
+			<div class="col-md-4">
+				<label class="form-label">Class Mode</label> <select
+					class="form-select">
+					<option>- Select -</option>
+				</select>
+			</div>
+
+		</div>
+
+		<!-- Table -->
+		<div class="table-responsive">
+			<table
+				class="table table-bordered table-hover align-middle text-center">
+
+				<thead class="table-light">
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Course</th>
+						<th>Number</th>
+						<th>Enquiry Date</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<!-- Static sample rows (replace later with Thymeleaf loop) -->
+					<tr>
+						<td>1</td>
+						<td>Mark</td>
+						<td>Java Fullstack</td>
+						<td>+91-79797979</td>
+						<td>13-Mar-2023</td>
+						<td>New</td>
+						<td>
+							<a class="btn btn-primary btn-sm" href="enquiry">EDIT</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>2</td>
+						<td>Steve</td>
+						<td>DevOps</td>
+						<td>+91-79797979</td>
+						<td>12-Mar-2023</td>
+						<td>Enrolled</td>
+						<td>
+							<a class="btn btn-primary btn-sm" href="enquiry">EDIT</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>3</td>
+						<td>David</td>
+						<td>React JS</td>
+						<td>+91-79797979</td>
+						<td>11-Mar-2023</td>
+						<td>Lost</td>
+						<td>
+							<a class="btn btn-primary btn-sm" href="enquiry">EDIT</a>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

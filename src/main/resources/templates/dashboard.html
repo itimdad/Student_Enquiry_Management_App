@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard | MyShiksha</title>
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+	crossorigin="anonymous">
+
+<style>
+.dashboard-card {
+	border-radius: 10px;
+	padding: 25px;
+}
+
+.performance-title {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.stat-total {
+	font-size: 26px;
+	font-weight: 700;
+}
+
+.stat-enrolled {
+	color: #28a745;
+	font-size: 22px;
+	font-weight: 600;
+}
+
+.stat-lost {
+	color: #dc3545;
+	font-size: 22px;
+	font-weight: 600;
+}
+
+.agent-img {
+	max-height: 160px;
+}
+</style>
+</head>
+<body>
+
+	<!-- Navbar -->
+
+	<div class="container">
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/"> <img src="images/logo1.png"
+					alt="MyShiksha Logo" class="img-fluid" style="max-height: 50px;">
+				</a>
+
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/enquiry">Add Enquiry</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="/enquiries">View Enquiry</a>
+						</li>
+
+					</ul>
+
+				</div>
+				<a href="/" class="btn btn-danger">Logout</a>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container mt-5">
+
+		<div class="card shadow dashboard-card">
+
+			<div class="row align-items-center">
+
+				<!-- LEFT CONTENT -->
+				<div class="col-md-7">
+					<p class="performance-title text-muted mb-2">Your Performance</p>
+
+					<p class="stat-total mb-3">Total Enquiries : 256</p>
+
+					<p class="stat-enrolled mb-2">Enrolled : 84</p>
+
+					<p class="stat-lost">Lost : 172</p>
+				</div>
+
+				<!-- RIGHT IMAGE -->
+				<div class="col-md-5 text-center">
+					<img src="images/lady1.jpg" alt="Support Agent">
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+		crossorigin="anonymous"></script>
+</body>
+</html>

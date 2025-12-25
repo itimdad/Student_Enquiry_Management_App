@@ -1,7 +1,11 @@
 package com.imdad.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,17 +18,19 @@ import lombok.Data;
 @Table(name = "AIT_USER_DTLS")
 public class UserDtlsEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userId;
-	private String userName;
-	@Column(unique = true)
-	private String email;
-	private Double phno;
-	private Double password;
-	private String accountStatus;
-	
-	@OneToMany(mappedBy = "user")
-	private StudentEnqEntity enquiry;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userId;
 
+    private String userName;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    private String phno;
+    private String password;
+    private String accountStatus;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<StudentEnqEntity> enquiries;
 }
