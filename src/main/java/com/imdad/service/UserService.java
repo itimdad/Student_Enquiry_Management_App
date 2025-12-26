@@ -1,19 +1,17 @@
 package com.imdad.service;
 
-import com.imdad.binding.DashboardResponse;
 import com.imdad.binding.LoginForm;
 import com.imdad.binding.SignUpForm;
 import com.imdad.binding.UnlockForm;
 
 public interface UserService {
 
-	public boolean registerUser(SignUpForm signUpForm);
+	public boolean signup(SignUpForm signUpForm);
 	
-	public boolean loginUser(LoginForm loginForm);
+	public String loginUser(LoginForm loginForm);
 	
-	public boolean unlockAccount(UnlockForm unlockForm);
+	public String unlockAccount(UnlockForm unlockForm);
 	
-	public boolean forgotPassword(String email);
+	public String forgotPassword(String email);
 	
-	public DashboardResponse dashboardData();
 }

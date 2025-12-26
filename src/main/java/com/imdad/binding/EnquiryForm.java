@@ -2,7 +2,15 @@ package com.imdad.binding;
 
 import org.springframework.stereotype.Component;
 
+import lombok.Data;
+
 @Component
+@Data
 public class EnquiryForm {
 
+	private String studentName;
+	private Long studentPhno;
+	private String classMode;
+	private String courseName;
+	private String enquiryStatus;
 }

@@ -21,16 +21,12 @@ public class UserDtlsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
-    private String userName;
-
-    @Column(unique = true, nullable = false)
+    private String name;
     private String email;
-
-    private String phno;
+    private Long phno;
     private String password;
     private String accountStatus;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<StudentEnqEntity> enquiries;
 }

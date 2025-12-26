@@ -7,4 +7,5 @@ import com.imdad.entity.UserDtlsEntity;
 @Repository
 public interface UserRepo extends JpaRepository<UserDtlsEntity, Integer>{
 
+	public UserDtlsEntity findByEmail(String email);
 }

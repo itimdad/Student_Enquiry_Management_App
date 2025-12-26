@@ -1,5 +1,24 @@
 package com.imdad.service;
 
+import java.util.List;
+
+import com.imdad.binding.DashboardResponse;
+import com.imdad.binding.EnquiryForm;
+import com.imdad.binding.EnquirySearchCriteria;
+import com.imdad.entity.StudentEnqEntity;
+
 public interface EnquiryService {
+	
+	public List<String> getCourseName();
+	
+	public List<String> getEnquiryStatus();
+	
+	public List<StudentEnqEntity> viewEnquiry(EnquirySearchCriteria enquirySearchCriteria);
+	
+	public boolean addEnquiry(EnquiryForm enquiryForm);
+	
+	public List<DashboardResponse> dashboardData(Integer userId);
+	
+	public EnquiryForm getEnquiry(Integer enqId);
 
 }

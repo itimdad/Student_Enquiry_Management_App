@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Sign Up | MyShiksha</title>
@@ -42,28 +42,29 @@ body {
 						alt="MyShiksha">
 					<h4 class="fw-bold">Create New Account</h4>
 				</div>
-
-				<form action="/register" method="post">
+				
+				<p th:text="${successMsg}" class="text-success"></p>
+				<p th:text="${errMsg}" class="text-danger"></p>
+				
+				<form th:action="@{/signup}" method="POST" th:object="${user}">
 
 					<div class="mb-3">
 						<label class="form-label">Full Name</label> <input type="text"
-							name="userName" class="form-control" required>
+							th:field="*{name}" class="form-control" required>
 					</div>
 
 					<div class="mb-3">
 						<label class="form-label">Email Address</label> <input
-							type="email" name="email" class="form-control" required>
+							type="email" th:field="*{email}" class="form-control" required>
 					</div>
 
 					<div class="mb-3">
 						<label class="form-label">Mobile Number</label> <input type="text"
-							name="phno" class="form-control" required>
+							th:field="*{phno}" class="form-control" required>
 					</div>
 
 					<div class="d-grid">
-						<button type="submit" class="btn btn-success">
-						<a href="/unlock">Sign Up</a>
-						</button>
+						<button type="submit" class="btn btn-success">Sign Up</button>
 					</div>
 
 				</form>
