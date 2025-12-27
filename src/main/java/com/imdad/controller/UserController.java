@@ -6,8 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.imdad.binding.SignUpForm;
+import com.imdad.binding.UnlockForm;
 import com.imdad.service.UserService;
 
 @Controller
@@ -32,6 +35,20 @@ public class UserController {
 		
 		return "signup";
 	}
+	
+	@PostMapping("/unlock")
+	public String unlockUserAccount(@ModelAttribute("unlockForm") UnlockForm form, Model model) {
+		
+		boolean unlocked = service.unlockAccount(form);
+		
+		if(unlocked) {
+			model.addAttribute("unlocked", "Your ACcount is unlockde");
+		} else {
+			model.addAttribute("unlocked", "Your password is mismatched");
+		}
+		
+		return "unlock";
+	}
 
 	@GetMapping("/login")
 	public String loginPage() {
@@ -51,7 +68,10 @@ public class UserController {
 	}
 	
 	@GetMapping("/unlock")
-	public String unlockPage() {
+	public String unlockPage(@RequestParam String email, Model model) {
+		
+		model.addAttribute("userEmail", email);
+		model.addAttribute("unlockForm", new UnlockForm());
 		return "unlock";
 	}
 }

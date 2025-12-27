@@ -16,6 +16,7 @@ import jakarta.mail.MessagingException;
 
 @Service
 public class UserServiceImpl implements UserService {
+
 	
 	@Autowired
 	PwdUtils pwdUtils;
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	EmailUtils emailUtils;
+
+
 
 	@Override
 	public boolean signup(SignUpForm signUpForm) {
@@ -86,21 +89,38 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String loginUser(LoginForm loginForm) {
+	public boolean loginUser(LoginForm loginForm) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
-	public String unlockAccount(UnlockForm unlockForm) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean unlockAccount(UnlockForm unlockForm) {
+		
+		//find data by password
+		String tempPwd = unlockForm.getTempPwd();
+		UserDtlsEntity entity = repo.findByPassword(tempPwd);
+		
+		//checking new password and confirm password are equals or not 
+		if(!unlockForm.getNewPwd().equals(unlockForm.getConfirmPwd())) {
+			return false;
+		}
+		
+		if(entity == null) {
+			return false;
+		}
+		entity.setPassword(unlockForm.getNewPwd());
+		entity.setAccountStatus("UNLOCKED");
+		
+		repo.save(entity);
+		
+		return true;
 	}
 
 	@Override
-	public String forgotPassword(String email) {
+	public boolean forgotPassword(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	
