@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.imdad.binding.LoginForm;
 import com.imdad.binding.SignUpForm;
 import com.imdad.binding.UnlockForm;
 import com.imdad.service.UserService;
@@ -17,9 +17,16 @@ import com.imdad.service.UserService;
 public class UserController {
 
 
-	
 	@Autowired
 	UserService service;
+
+	
+	@GetMapping("/signup")
+	public String signupPage(Model model) {
+		
+		model.addAttribute("user", new SignUpForm());
+		return "signup";
+	}
 	
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute("user") SignUpForm form, Model model) {
@@ -36,42 +43,59 @@ public class UserController {
 		return "signup";
 	}
 	
+	@GetMapping("/unlock")
+	public String unlockPage(@RequestParam String email, Model model) {
+		
+		UnlockForm unlockForm = new UnlockForm();
+		unlockForm.setEmail(email);
+		model.addAttribute("unlockForm", unlockForm);
+		return "unlock";
+	}
+	
 	@PostMapping("/unlock")
 	public String unlockUserAccount(@ModelAttribute("unlockForm") UnlockForm form, Model model) {
 		
-		boolean unlocked = service.unlockAccount(form);
-		
-		if(unlocked) {
-			model.addAttribute("unlocked", "Your ACcount is unlockde");
+		if(form.getNewPwd().equals(form.getConfirmPwd())) {
+			
+			boolean unlocked = service.unlockAccount(form);
+	
+			if(unlocked) {
+				model.addAttribute("unlocked", "Your Account is unlocked");
+			} else {
+				model.addAttribute("errMsg", "Your temporary password is incorrect check again");
+			}
 		} else {
-			model.addAttribute("unlocked", "Your password is mismatched");
+			model.addAttribute("errMsg", "Your password not matched");
 		}
+		
 		
 		return "unlock";
 	}
 
 	@GetMapping("/login")
-	public String loginPage() {
+	public String loginPage(Model model) {
+		
+		model.addAttribute("loginForm", new LoginForm());
+
 		return "login";
 	}
 	
-	@GetMapping("/signup")
-	public String signupPage(Model model) {
+	@PostMapping("/login")
+	public String loginUser(@ModelAttribute("loginForm") LoginForm form, Model model) {
+	
+		boolean loginUser = service.loginUser(form);
 		
-		model.addAttribute("user", new SignUpForm());
-		return "signup";
+		if(!loginUser) {
+			model.addAttribute("errMsg", "Incorrect email or Password");
+		}
+		
+		return "dashboard";
 	}
+	
 	
 	@GetMapping("/forgot")
 	public String forgotPage() {
 		return "forgot";
 	}
 	
-	@GetMapping("/unlock")
-	public String unlockPage(@RequestParam String email, Model model) {
-		
-		model.addAttribute("userEmail", email);
-		model.addAttribute("unlockForm", new UnlockForm());
-		return "unlock";
-	}
 }

@@ -91,24 +91,37 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean loginUser(LoginForm loginForm) {
 		// TODO Auto-generated method stub
-		return true;
+		
+		boolean isValid = false;
+		
+		//validate email and password 
+		String userEmail = loginForm.getUserEmail();
+		String userPassword = loginForm.getUserPassword();
+		
+		UserDtlsEntity entity = repo.findByEmail(userEmail);
+		
+		if(entity.getPassword().equals(userPassword)) {
+			isValid = true;
+		}
+		
+		return isValid;
 	}
 
 	@Override
 	public boolean unlockAccount(UnlockForm unlockForm) {
 		
 		//find data by password
-		String tempPwd = unlockForm.getTempPwd();
-		UserDtlsEntity entity = repo.findByPassword(tempPwd);
-		
-		//checking new password and confirm password are equals or not 
-		if(!unlockForm.getNewPwd().equals(unlockForm.getConfirmPwd())) {
-			return false;
-		}
+		String email = unlockForm.getEmail();
+		UserDtlsEntity entity = repo.findByEmail(email);
 		
 		if(entity == null) {
 			return false;
 		}
+		
+		if(!entity.getPassword().equals(unlockForm.getTempPwd())) {
+			return false;
+		}
+		
 		entity.setPassword(unlockForm.getNewPwd());
 		entity.setAccountStatus("UNLOCKED");
 		

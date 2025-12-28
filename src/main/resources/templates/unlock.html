@@ -87,13 +87,17 @@ body {
 
 					<h4 class="fw-bold mt-4 mb-3">Unlock your account here</h4>
 
-					<p class="text-muted">
-						Your Email : <strong th:text="${userEmail}"></strong>
-					</p>
 					
 				<p th:text="${unlocked}" class="text-success"></p>
+				<p th:text="${errMsg}" class="text-danger"></p>
 				
 					<form th:action="@{/unlock}" method="post" th:object="${unlockForm}">
+					
+					<p class="text-muted">
+						Your Email : <strong th:text="${unlockForm.email}"></strong>
+					</p>
+					
+					    <input type="hidden" th:field="*{email}">
 						<input type="password" class="form-control"
 							placeholder="Temporary Password" th:field="*{tempPwd}"> 
 							

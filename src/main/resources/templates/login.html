@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Login | MyShiksha</title>
@@ -38,15 +38,15 @@ body {
 					<h4 class="fw-bold">Login to MyShiksha</h4>
 				</div>
 
-				<form action="/login" method="post">
+				<form th:action="@{/login}" method="post" th:object="${loginForm}">
 					<div class="mb-3">
 						<label class="form-label">Email</label> <input type="email"
-							name="email" class="form-control" required>
+							name="email" th:field="*{userEmail}" class="form-control"  required>
 					</div>
 
 					<div class="mb-3">
 						<label class="form-label">Password</label> <input type="password"
-							name="password" class="form-control" required>
+							th:field="*{userPassword}" name="password" class="form-control" required>
 					</div>
 
 					<div class="d-grid">
