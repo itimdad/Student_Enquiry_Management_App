@@ -42,7 +42,7 @@ body {
 					</p>
 				</div>
 
-				<form th:action="@{/forgotPassword}" method="GET">
+				<form th:action="@{/forgotPassword}" method="POST">
 				<p th:text="${success}" class="text-success"></p>
 				<p th:text="${errMsg}" class="text-danger"></p>
 					<div class="mb-3">

@@ -133,22 +133,26 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String forgotPassword(String email) {
-		// TODO Auto-generated method stub
+		// TODO check record present in the database with given email 
+		
 		UserDtlsEntity entity = repo.findByEmail(email);
 		
+		//if record is not available send error message
 		if(entity == null) {
-			return "Invalid Email";
+			return "Invalid Email Id";
 		}
+		
+		//if account is locked show error message
 		if(entity.getAccountStatus().equals("LOCKED")) {
 			return "Your Account is Locked Please Unlock it";
 		}
 		
-		
-		String subject = "Get Your Account Password";
+		//send email message if record available
+		String subject = "Recover Account Password";
 		StringBuffer body = new StringBuffer();
 		body.append("<h3>Here you find your password which you forgot</h3>");
 		body.append("<br>");
-		body.append("Password: " + entity.getPassword());
+		body.append(" Your Password: " + entity.getPassword());
 		String to = entity.getEmail();
 		
 		try {

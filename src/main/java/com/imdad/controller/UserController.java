@@ -100,7 +100,7 @@ public class UserController {
 		return "forgot";
 	}
 	
-	@GetMapping("/forgotPassword")
+	@PostMapping("/forgotPassword")
 	public String forgotPassword(@RequestParam String email, Model model) {
 		
     String status = service.forgotPassword(email);
