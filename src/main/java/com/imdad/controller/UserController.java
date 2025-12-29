@@ -83,18 +83,35 @@ public class UserController {
 	@PostMapping("/login")
 	public String loginUser(@ModelAttribute("loginForm") LoginForm form, Model model) {
 	
-		boolean loginUser = service.loginUser(form);
+		String status = service.loginUser(form);
 		
-		if(!loginUser) {
-			model.addAttribute("errMsg", "Incorrect email or Password");
+		if(status != "success") {
+			model.addAttribute("errMsg", status);
+			
+			return "login";
 		}
 		
-		return "dashboard";
+		return "redirect:/dashboard";
 	}
 	
 	
 	@GetMapping("/forgot")
 	public String forgotPage() {
+		return "forgot";
+	}
+	
+	@GetMapping("/forgotPassword")
+	public String forgotPassword(@RequestParam String email, Model model) {
+		
+    String status = service.forgotPassword(email);
+		
+		if(status.equals("success")) {
+			model.addAttribute("success", "Your password sent check your email");
+		} 
+		else {
+			model.addAttribute("errMsg", status);
+		}
+		
 		return "forgot";
 	}
 	

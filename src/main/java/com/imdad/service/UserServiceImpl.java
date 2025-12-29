@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
 		body.append("We are sending you the email for unlock the account");
 		body.append("</br>");
 		body.append("Temporary Password: " + password);
-		body.append("</br>");
+		body.append("<br/>");
 		
 		String unlockLink =
 		        "http://localhost:8080/unlock?email=" + signUpForm.getEmail();
@@ -89,22 +89,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean loginUser(LoginForm loginForm) {
+	public String loginUser(LoginForm loginForm) {
 		// TODO Auto-generated method stub
-		
-		boolean isValid = false;
+	
 		
 		//validate email and password 
 		String userEmail = loginForm.getUserEmail();
 		String userPassword = loginForm.getUserPassword();
 		
-		UserDtlsEntity entity = repo.findByEmail(userEmail);
+		UserDtlsEntity entity = repo.findByEmailAndPassword(userEmail, userPassword);
 		
-		if(entity.getPassword().equals(userPassword)) {
-			isValid = true;
+		if(entity == null) {
+			return "Invalid Credential";
 		}
 		
-		return isValid;
+		if(!entity.getAccountStatus().equals("UNLOCKED")) {
+			return "Your Account Locked Please Unlock it";
+		}
+		
+		return "success";
 	}
 
 	@Override
@@ -114,9 +117,7 @@ public class UserServiceImpl implements UserService {
 		String email = unlockForm.getEmail();
 		UserDtlsEntity entity = repo.findByEmail(email);
 		
-		if(entity == null) {
-			return false;
-		}
+	
 		
 		if(!entity.getPassword().equals(unlockForm.getTempPwd())) {
 			return false;
@@ -131,9 +132,32 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean forgotPassword(String email) {
+	public String forgotPassword(String email) {
 		// TODO Auto-generated method stub
-		return false;
+		UserDtlsEntity entity = repo.findByEmail(email);
+		
+		if(entity == null) {
+			return "Invalid Email";
+		}
+		if(entity.getAccountStatus().equals("LOCKED")) {
+			return "Your Account is Locked Please Unlock it";
+		}
+		
+		
+		String subject = "Get Your Account Password";
+		StringBuffer body = new StringBuffer();
+		body.append("<h3>Here you find your password which you forgot</h3>");
+		body.append("<br>");
+		body.append("Password: " + entity.getPassword());
+		String to = entity.getEmail();
+		
+		try {
+			emailUtils.sendEmail(to, subject, body.toString());
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return "success";
 	}
 
 	

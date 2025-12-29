@@ -37,7 +37,7 @@ body {
 					<img src="images/logo1.png" class="login-logo mb-2" alt="MyShiksha">
 					<h4 class="fw-bold">Login to MyShiksha</h4>
 				</div>
-
+				<p th:text="${errMsg}" class="text-danger"></p>
 				<form th:action="@{/login}" method="post" th:object="${loginForm}">
 					<div class="mb-3">
 						<label class="form-label">Email</label> <input type="email"

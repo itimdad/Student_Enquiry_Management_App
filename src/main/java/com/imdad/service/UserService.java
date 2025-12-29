@@ -8,10 +8,10 @@ public interface UserService {
 
 	public boolean signup(SignUpForm signUpForm);
 	
-	public boolean loginUser(LoginForm loginForm);
+	public String loginUser(LoginForm loginForm);
 	
 	public boolean unlockAccount(UnlockForm unlockForm);
 	
-	public boolean forgotPassword(String email);
+	public String forgotPassword(String email);
 	
 }

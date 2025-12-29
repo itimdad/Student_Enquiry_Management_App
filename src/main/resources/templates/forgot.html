@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Forgot Password | MyShiksha</title>
@@ -42,8 +42,9 @@ body {
 					</p>
 				</div>
 
-				<form action="/forgot-password" method="post">
-
+				<form th:action="@{/forgotPassword}" method="GET">
+				<p th:text="${success}" class="text-success"></p>
+				<p th:text="${errMsg}" class="text-danger"></p>
 					<div class="mb-3">
 						<label class="form-label">Email Address</label> <input
 							type="email" name="email" class="form-control"
