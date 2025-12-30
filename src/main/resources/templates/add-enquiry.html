@@ -61,47 +61,60 @@
 
 			<h4 class="fw-bold mb-4">Add Student Enquiry Here</h4>
 
-			<form>
+			<form th:action="@{/enquiry}" method="post"
+				th:object="${enquiryForm}">
+				
+			    <p th:text="${successMsg}" class="text-success"></p>
+				<p th:text="${errMsg}" class="text-danger"></p>
 
 				<!-- Student Name -->
 				<div class="mb-3 col-md-6">
 					<label class="form-label">Student Name</label> <input type="text"
-						class="form-control" placeholder="Student Name">
+						th:field="*{studentName}" class="form-control"
+						placeholder="Student Name">
 				</div>
 
 				<div class="mb-3 col-md-6">
 					<label class="form-label">Phone Number</label> <input type="number"
-						class="form-control" placeholder="Student Name">
+						th:field="*{studentPhno}" class="form-control"
+						placeholder="Phone No">
 				</div>
 
 				<!-- Class Mode -->
 				<div class="mb-3 col-md-6">
 					<label class="form-label">Class Mode</label> <select
-						class="form-select">
-						<option>- Select -</option>
-						<option>Online</option>
-						<option>Offline</option>
+						class="form-select" th:field="*{classMode}">
+						<option value="">- Select -</option>
+						<option value="Online">Online</option>
+						<option value="Ofline">Offline</option>
 					</select>
 				</div>
 
 				<!-- Course -->
 				<div class="mb-3 col-md-6">
-					<label class="form-label">Course</label> <select
-						class="form-select">
-						<option>Java Fullstack</option>
-						<option>Spring Boot</option>
-						<option>DevOps</option>
-						<option>React JS</option>
+					<label class="form-label">Course</label>
+					 <select
+						class="form-select" th:field="*{courseName}">
+						<option value="">-Select-</option>
+						<option 
+						th:each="c : ${courseName}" 
+						th:value="${c}" 
+						th:text="${c}">
+						</option>
 					</select>
 				</div>
 
 				<!-- Enquiry Status -->
 				<div class="mb-4 col-md-6">
-					<label class="form-label">Enquiry Status</label> <select
-						class="form-select">
-						<option>New</option>
-						<option>Enrolled</option>
-						<option>Lost</option>
+					<label class="form-label">Enquiry Status</label>
+					 <select class="form-select" th:field="*{enquiryStatus}">
+					    <option value="">-Select-</option>
+						<option
+						th:each="status : ${statuses}"
+						th:value="${status}"
+						th:text="${status}">
+						</option>
+						
 					</select>
 				</div>
 

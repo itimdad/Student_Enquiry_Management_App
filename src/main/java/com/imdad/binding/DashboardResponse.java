@@ -9,6 +9,6 @@ import lombok.Data;
 public class DashboardResponse {
 
 	Integer totalEnquiries;
-	Integer enrolledCnt;
-	Integer lostCnt;
+	Long enrolledCnt;
+	Long lostCnt;
 }

@@ -74,7 +74,7 @@
 					</ul>
 
 				</div>
-				<a href="/" class="btn btn-danger">Logout</a>
+				<a href="/logout" class="btn btn-danger">Logout</a>
 			</div>
 		</nav>
 	</div>
@@ -89,11 +89,11 @@
 				<div class="col-md-7">
 					<p class="performance-title text-muted mb-2">Your Performance</p>
 
-					<p class="stat-total mb-3">Total Enquiries : 256</p>
+					<p class="stat-total mb-3">Total Enquiries : <span th:text="${dashboard.totalEnquiries}"></span> </p>
 
-					<p class="stat-enrolled mb-2">Enrolled : 84</p>
+					<p class="stat-enrolled mb-2">Enrolled : <span th:text="${dashboard.enrolledCnt}"></span> </p>
 
-					<p class="stat-lost">Lost : 172</p>
+					<p class="stat-lost">Lost : <span th:text="${dashboard.lostCnt}"></span> </p>
 				</div>
 
 				<!-- RIGHT IMAGE -->

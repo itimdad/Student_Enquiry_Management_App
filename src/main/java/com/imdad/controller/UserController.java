@@ -13,13 +13,27 @@ import com.imdad.binding.SignUpForm;
 import com.imdad.binding.UnlockForm;
 import com.imdad.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 
 
 	@Autowired
 	UserService service;
+	
+	@Autowired
+	HttpSession session;
 
+	@GetMapping("/logout")
+	public String logout() {
+		
+		session.invalidate();
+		
+		System.out.println("Logout successfull");
+		
+		return "index";
+	}
 	
 	@GetMapping("/signup")
 	public String signupPage(Model model) {

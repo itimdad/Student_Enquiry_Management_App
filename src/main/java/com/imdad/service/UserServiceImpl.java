@@ -13,6 +13,7 @@ import com.imdad.util.EmailUtils;
 import com.imdad.util.PwdUtils;
 
 import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,6 +27,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	EmailUtils emailUtils;
+	
+	@Autowired
+	HttpSession session;
 
 
 
@@ -106,6 +110,8 @@ public class UserServiceImpl implements UserService {
 		if(!entity.getAccountStatus().equals("UNLOCKED")) {
 			return "Your Account Locked Please Unlock it";
 		}
+		
+		session.setAttribute("userId", entity.getUserId());
 		
 		return "success";
 	}

@@ -27,6 +27,6 @@ public class UserDtlsEntity {
     private String password;
     private String accountStatus;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<StudentEnqEntity> enquiries;
 }

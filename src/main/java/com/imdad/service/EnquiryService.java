@@ -15,9 +15,9 @@ public interface EnquiryService {
 	
 	public List<StudentEnqEntity> viewEnquiry(EnquirySearchCriteria enquirySearchCriteria);
 	
-	public boolean addEnquiry(EnquiryForm enquiryForm);
+	public boolean addEnquiry(EnquiryForm enquiryForm, Integer userId);
 	
-	public List<DashboardResponse> dashboardData(Integer userId);
+	public DashboardResponse dashboardData(Integer userId);
 	
 	public EnquiryForm getEnquiry(Integer enqId);
 
