@@ -9,7 +9,7 @@ import lombok.Data;
 public class EnquirySearchCriteria {
 	
 	private String searchCourse;
-	private String searchStatus;
+	private String searchEnqStatus;
 	private String searchClassMode;
 
 }

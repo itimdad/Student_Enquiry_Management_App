@@ -10,6 +10,34 @@
 	rel="stylesheet"
 	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
 	crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+	  $(document).ready(function(){
+		  $(".form-select").on("change", function(e){
+	
+			  
+			  $.ajax({
+				 
+				  type:"GET",
+				  url:"filter-enquiries",
+				  data: {
+			          cname : $( "#cname").val(),
+			          mode : $("#mode").val(),
+			          status : $("#status").val()
+				  },
+				  success: function(result) {
+					$("#enqTbl").hide();
+					$("#filterResultTbl").html(result);
+				  }
+				  
+			  });
+			  
+		  });
+	  });
+	
+	</script>
 
 </head>
 <body>
@@ -53,31 +81,46 @@
 		<div class="row mb-4">
 
 			<div class="col-md-4">
-				<label class="form-label">Course</label> <select class="form-select">
-					<option>- Select -</option>
+				<label class="form-label">Course</label> 
+				<select class="form-select" id="cname">
+					<option value="">- Select -</option>
+					<option value="Java">Java</option>
+					<option value="DevOps">DevOps</option>
+					<option value="Angular">Angular</option>
 				</select>
 			</div>
 
 			<div class="col-md-4">
-				<label class="form-label">Enquiry Status</label> <select
-					class="form-select">
-					<option>-Select-</option>
+				<label class="form-label">Enquiry Status</label> 
+				<select class="form-select" id="status">
+					<option value="">-Select-</option>
+					<option value="ENROLLED">ENROLLED</option>
+					<option value="LOST">LOST</option>
+					<option value="NEW">NEW</option>
 				</select>
 			</div>
 
 			<div class="col-md-4">
-				<label class="form-label">Class Mode</label> <select
-					class="form-select">
-					<option>- Select -</option>
+				<label class="form-label">Class Mode</label> 
+				<select class="form-select" id="mode">
+					<option value="">- Select -</option>
+					<option value="Online">Online</option>
+					<option value="Ofline">Ofline</option>
 				</select>
 			</div>
 
 		</div>
+		
+		<!-- filtered data   -->
+		
+		<div id="filterResultTbl">
+		
+		</div>
+
 
 		<!-- Table -->
 		<div class="table-responsive">
-			<table
-				class="table table-bordered table-hover align-middle text-center">
+			<table class="table table-bordered table-hover align-middle text-center" id="enqTbl">
 
 				<thead class="table-light">
 					<tr>
@@ -93,41 +136,18 @@
 
 				<tbody>
 					<!-- Static sample rows (replace later with Thymeleaf loop) -->
-					<tr>
-						<td>1</td>
-						<td>Mark</td>
-						<td>Java Fullstack</td>
-						<td>+91-79797979</td>
-						<td>13-Mar-2023</td>
-						<td>New</td>
+					<tr th:each="enquiry : ${viewEnquiry}">
+						<td th:text="${enquiry.enquiryId}" />
+						<td th:text="${enquiry.studentName}" />
+						<td th:text="${enquiry.courseName}" />
+						<td th:text="${enquiry.studentPhno}" />
+						<td th:text="${enquiry.createdDate}" />
+						<td th:text="${enquiry.enquiryStatus}" />
 						<td>
 							<a class="btn btn-primary btn-sm" href="enquiry">EDIT</a>
 						</td>
 					</tr>
 
-					<tr>
-						<td>2</td>
-						<td>Steve</td>
-						<td>DevOps</td>
-						<td>+91-79797979</td>
-						<td>12-Mar-2023</td>
-						<td>Enrolled</td>
-						<td>
-							<a class="btn btn-primary btn-sm" href="enquiry">EDIT</a>
-						</td>
-					</tr>
-
-					<tr>
-						<td>3</td>
-						<td>David</td>
-						<td>React JS</td>
-						<td>+91-79797979</td>
-						<td>11-Mar-2023</td>
-						<td>Lost</td>
-						<td>
-							<a class="btn btn-primary btn-sm" href="enquiry">EDIT</a>
-						</td>
-					</tr>
 				</tbody>
 
 			</table>

@@ -13,12 +13,14 @@ public interface EnquiryService {
 	
 	public List<String> getEnquiryStatus();
 	
-	public List<StudentEnqEntity> viewEnquiry(EnquirySearchCriteria enquirySearchCriteria);
+	public List<StudentEnqEntity> viewAllEnquiry();
 	
 	public boolean addEnquiry(EnquiryForm enquiryForm, Integer userId);
 	
 	public DashboardResponse dashboardData(Integer userId);
 	
 	public EnquiryForm getEnquiry(Integer enqId);
+	
+	public List<StudentEnqEntity> getFilteredEnquiries(EnquirySearchCriteria criteria);
 
 }

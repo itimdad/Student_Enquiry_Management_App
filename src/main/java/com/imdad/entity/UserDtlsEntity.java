@@ -12,9 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
+@ToString(exclude = "enquiries")
 @Table(name = "AIT_USER_DTLS")
 public class UserDtlsEntity {
 
@@ -27,6 +29,6 @@ public class UserDtlsEntity {
     private String password;
     private String accountStatus;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<StudentEnqEntity> enquiries;
 }

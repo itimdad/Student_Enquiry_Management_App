@@ -14,9 +14,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 @Entity
-@Table(name = "AIT_STUDENT_ENQUIRIES")
 @Data
+@ToString(exclude = "user")
+@Table(name = "AIT_STUDENT_ENQUIRIES")
 public class StudentEnqEntity {
 
     @Id
@@ -24,7 +26,7 @@ public class StudentEnqEntity {
     private Integer enquiryId;
 
     private String studentName;
-    private String phno;
+    private String studentPhno;
     private String classMode;
     private String courseName;
     private String enquiryStatus;
@@ -35,7 +37,7 @@ public class StudentEnqEntity {
     @UpdateTimestamp
     private LocalDate updatedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private UserDtlsEntity user;
 }
