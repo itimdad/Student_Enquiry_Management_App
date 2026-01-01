@@ -16,7 +16,6 @@ import lombok.ToString;
 
 @Data
 @Entity
-@ToString(exclude = "enquiries")
 @Table(name = "AIT_USER_DTLS")
 public class UserDtlsEntity {
 

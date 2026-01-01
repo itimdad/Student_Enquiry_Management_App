@@ -28,7 +28,7 @@
 
 		<nav class="navbar navbar-expand-lg bg-body-tertiary">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/"> <img src="images/logo1.png"
+				<a class="navbar-brand" href="/"> <img src="/images/logo1.png"
 					alt="MyShiksha Logo" class="img-fluid" style="max-height: 50px;">
 				</a>
 
@@ -66,6 +66,10 @@
 				
 			    <p th:text="${successMsg}" class="text-success"></p>
 				<p th:text="${errMsg}" class="text-danger"></p>
+				
+				<div>
+				    <input type="hidden" th:field="*{enquiryId}">
+				</div>
 
 				<!-- Student Name -->
 				<div class="mb-3 col-md-6">

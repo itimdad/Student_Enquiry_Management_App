@@ -7,24 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.imdad.binding.DashboardResponse;
 import com.imdad.binding.EnquiryForm;
 import com.imdad.binding.EnquirySearchCriteria;
-import com.imdad.binding.UnlockForm;
 import com.imdad.entity.StudentEnqEntity;
 import com.imdad.service.EnquiryService;
-import com.imdad.service.EnquiryServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class EnquiryController {
 
    
-
-	
 	@Autowired
 	HttpSession session;
 	
@@ -32,18 +29,17 @@ public class EnquiryController {
 	EnquiryService enquiryService;
 
 	
-
 	@GetMapping("/dashboard")
 	public String loadDashBoard(Model model) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
-		DashboardResponse dashboardData = enquiryService.dashboardData(userId);
-		
-		if(dashboardData == null) {
+		if(userId == null) {
 			
 			return "redirect:/login";
 		}
+		DashboardResponse dashboardData = enquiryService.dashboardData(userId);
+		
 		
 		model.addAttribute("dashboard", dashboardData);
 		System.out.println(dashboardData);
@@ -78,21 +74,17 @@ public class EnquiryController {
 	}
 
 	private void init(Model model) {
-		//getting course name from database
-		List<String> courseName = enquiryService.getCourseName();
-		
-		//getting enquires status from database
-		List<String> enquiryStatus = enquiryService.getEnquiryStatus();
-		
+
 		//sending courses to the UI
-		model.addAttribute("courseName", courseName);
+		model.addAttribute("courseName", enquiryService.getCourseName());
 		
 		//sending status to the UI
-		model.addAttribute("statuses", enquiryStatus);
+		model.addAttribute("statuses", enquiryService.getEnquiryStatus());
 		
 		//sending binding object to the UI
 		model.addAttribute("enquiryForm", new EnquiryForm());
 	}
+	
 	
 	@GetMapping("/enquiries")
 	public String viewEnquiriesPage( Model model) {
@@ -104,6 +96,25 @@ public class EnquiryController {
 		return "view-enquiries";
 	}
 	
+	@GetMapping("/editEnquiry/{enquiryId}")
+	public String editEnquiryData(@PathVariable Integer enquiryId, Model model) {
+		
+		System.out.println(enquiryId);
+		
+		EnquiryForm enquiryForm = enquiryService.editStudentEnquiry(enquiryId);
+		
+		//sending courses to the UI
+		model.addAttribute("courseName", enquiryService.getCourseName());
+		
+		//sending status to the UI
+		model.addAttribute("statuses", enquiryService.getEnquiryStatus());
+		
+		model.addAttribute("enquiryForm", enquiryForm);
+		
+		
+		return "add-enquiry";
+	}
+	
 	@GetMapping("filter-enquiries")
 	public String getFilteredEnquiry(@RequestParam String cname, 
 			@RequestParam String status,
@@ -113,8 +124,6 @@ public class EnquiryController {
 		criteria.setSearchClassMode(mode);
 		criteria.setSearchEnqStatus(status);
 		criteria.setSearchCourse(cname);
-		
-		System.out.println(criteria);
 		
 		List<StudentEnqEntity> filteredEnquiries = enquiryService.getFilteredEnquiries(criteria);
 		

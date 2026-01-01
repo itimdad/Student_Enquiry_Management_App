@@ -42,8 +42,9 @@
 					<td th:text="${enquiry.studentPhno}" />
 					<td th:text="${enquiry.createdDate}" />
 					<td th:text="${enquiry.enquiryStatus}" />
-					<td><a class="btn btn-primary btn-sm" href="enquiry">EDIT</a>
-					</td>
+					<td><a class="btn btn-primary btn-sm"
+						th:href="@{'/editEnquiry/' + ${enquiry.enquiryId}}">EDIT</a></td>
+
 				</tr>
 
 			</tbody>

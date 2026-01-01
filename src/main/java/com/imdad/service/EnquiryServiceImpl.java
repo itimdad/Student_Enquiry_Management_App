@@ -142,9 +142,20 @@ public class EnquiryServiceImpl implements EnquiryService {
 					.collect(Collectors.toList());
 		}
 		
-		System.out.println(enquiries);
-
 		return enquiries;
+	}
+
+	@Override
+	public EnquiryForm editStudentEnquiry(Integer enquiryId) {
+		// TODO Auto-generated method stub
+		
+		StudentEnqEntity studentEnqEntity = studentDtlsRepo.findById(enquiryId).get();
+		
+		EnquiryForm form = new EnquiryForm();
+		
+		BeanUtils.copyProperties(studentEnqEntity, form);
+		
+		return form;
 	}
 
 }

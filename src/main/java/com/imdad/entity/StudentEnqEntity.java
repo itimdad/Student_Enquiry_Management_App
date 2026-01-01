@@ -17,7 +17,6 @@ import lombok.Data;
 import lombok.ToString;
 @Entity
 @Data
-@ToString(exclude = "user")
 @Table(name = "AIT_STUDENT_ENQUIRIES")
 public class StudentEnqEntity {
 
