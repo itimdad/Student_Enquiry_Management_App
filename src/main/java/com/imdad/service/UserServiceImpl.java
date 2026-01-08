@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean signup(SignUpForm signUpForm) {
-		// TODO Auto-generated method stub
 		
 		//Check email is already registered or not
 		UserDtlsEntity byEmail = repo.findByEmail(signUpForm.getEmail());
@@ -44,10 +43,10 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 		
-		//TODO: Generate OTP 
+		// Generate OTP 
 		String password = pwdUtils.generatePwd();
 		
-		//TODO: capture data from sign up  form to user entity		
+		// capture data from sign up  form to user entity		
 		UserDtlsEntity entity = new UserDtlsEntity();
 		
 		BeanUtils.copyProperties(signUpForm, entity);
@@ -60,7 +59,7 @@ public class UserServiceImpl implements UserService {
 		//TODO: save Data
 		repo.save(entity);
 		
-		//TODO: send email
+		//: send email
 		
 		String to = signUpForm.getEmail();
 		String subject = "Unlock Your Account";
@@ -93,9 +92,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String loginUser(LoginForm loginForm) {
-		// TODO Auto-generated method stub
-	
+	public String loginUser(LoginForm loginForm) {	
 		
 		//validate email and password 
 		String userEmail = loginForm.getUserEmail();
@@ -139,7 +136,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String forgotPassword(String email) {
-		// TODO check record present in the database with given email 
+		// check record present in the database with given email 
 		
 		UserDtlsEntity entity = repo.findByEmail(email);
 		

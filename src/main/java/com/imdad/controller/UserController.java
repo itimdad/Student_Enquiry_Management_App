@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.imdad.binding.LoginForm;
 import com.imdad.binding.SignUpForm;
 import com.imdad.binding.UnlockForm;
+import com.imdad.contants.AppConstant;
 import com.imdad.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -47,10 +48,10 @@ public class UserController {
 		boolean signup = service.signup(form);
 		
 		if(signup) {
-			model.addAttribute("successMsg", "successfully registered , Check your email");
+			model.addAttribute(AppConstant.SUCCESS_MSG, "successfully registered , Check your email");
 		}
 		else {
-			model.addAttribute("errMsg", "Your email is Already registered");
+			model.addAttribute(AppConstant.ERR_MSG, "Your email is Already registered");
 		}
 		
 		return "signup";
@@ -75,10 +76,10 @@ public class UserController {
 			if(unlocked) {
 				model.addAttribute("unlocked", "Your Account is unlocked");
 			} else {
-				model.addAttribute("errMsg", "Your temporary password is incorrect check again");
+				model.addAttribute(AppConstant.ERR_MSG, "Your temporary password is incorrect check again");
 			}
 		} else {
-			model.addAttribute("errMsg", "Your password not matched");
+			model.addAttribute(AppConstant.ERR_MSG, "Your password not matched");
 		}
 		
 		
@@ -98,8 +99,8 @@ public class UserController {
 	
 		String status = service.loginUser(form);
 		
-		if(status != "success") {
-			model.addAttribute("errMsg", status);
+		if(!status.equals("success")) {
+			model.addAttribute(AppConstant.ERR_MSG, status);
 			
 			return "login";
 		}
@@ -122,7 +123,7 @@ public class UserController {
 			model.addAttribute("success", "Your password sent check your email");
 		} 
 		else {
-			model.addAttribute("errMsg", status);
+			model.addAttribute(AppConstant.ERR_MSG, status);
 		}
 		
 		return "forgot";

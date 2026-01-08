@@ -39,33 +39,26 @@ public class EnquiryServiceImpl implements EnquiryService {
 
 	@Override
 	public List<String> getCourseName() {
-		// TODO Auto-generated method stub
 
-		List<String> courseName = courseRepo.findCourseName();
+		return courseRepo.findCourseName();
 
-		return courseName;
 	}
 
 	@Override
 	public List<String> getEnquiryStatus() {
-		// TODO Auto-generated method stub
 
-		List<String> statuses = enquiryStatusRepo.findStatuses();
-		return statuses;
+		return enquiryStatusRepo.findStatuses();
 	}
 
 	@Override
 	public List<StudentEnqEntity> viewAllEnquiry() {
-		// TODO Auto-generated method stub
 
-		List<StudentEnqEntity> all = studentDtlsRepo.findAll();
+		return studentDtlsRepo.findAll();
 
-		return all;
 	}
 
 	@Override
 	public boolean addEnquiry(EnquiryForm enquiryForm, Integer userId) {
-		// TODO Auto-generated method stub
 
 		UserDtlsEntity user = userRepo.findById(userId).get();
 
@@ -81,7 +74,6 @@ public class EnquiryServiceImpl implements EnquiryService {
 
 	@Override
 	public DashboardResponse dashboardData(Integer userId) {
-		// TODO Auto-generated method stub
 
 		DashboardResponse response = new DashboardResponse();
 
@@ -109,13 +101,11 @@ public class EnquiryServiceImpl implements EnquiryService {
 
 	@Override
 	public EnquiryForm getEnquiry(Integer enqId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<StudentEnqEntity> getFilteredEnquiries(EnquirySearchCriteria criteria) {
-		// TODO Auto-generated method stub
 
 		Integer userId = (Integer) session.getAttribute("userId");
 
@@ -147,7 +137,6 @@ public class EnquiryServiceImpl implements EnquiryService {
 
 	@Override
 	public EnquiryForm editStudentEnquiry(Integer enquiryId) {
-		// TODO Auto-generated method stub
 		
 		StudentEnqEntity studentEnqEntity = studentDtlsRepo.findById(enquiryId).get();
 		

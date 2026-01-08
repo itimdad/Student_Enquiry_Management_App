@@ -100,7 +100,6 @@ public class EnquiryController {
 	@GetMapping("/editEnquiry/{enquiryId}")
 	public String editEnquiryData(@PathVariable Integer enquiryId, Model model) {
 		
-		System.out.println(enquiryId);
 		
 		EnquiryForm enquiryForm = enquiryService.editStudentEnquiry(enquiryId);
 		
