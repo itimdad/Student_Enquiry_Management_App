@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.imdad.binding.DashboardResponse;
 import com.imdad.binding.EnquiryForm;
 import com.imdad.binding.EnquirySearchCriteria;
+import com.imdad.contants.AppConstant;
 import com.imdad.entity.StudentEnqEntity;
 import com.imdad.service.EnquiryService;
 import jakarta.servlet.http.HttpSession;
@@ -51,7 +52,7 @@ public class EnquiryController {
 	public String addEnquiryPage(Model model) {
 		
 		init(model);
-		return "add-enquiry";
+		return AppConstant.ADD_ENQUIRY_PAGE;
 	}
 	
 	@PostMapping("/enquiry")
@@ -70,7 +71,7 @@ public class EnquiryController {
 			model.addAttribute("errMsg", "Something wrong");
 		}
 		
-		return "add-enquiry";
+		return AppConstant.ADD_ENQUIRY_PAGE;
 	}
 
 	private void init(Model model) {
@@ -112,7 +113,7 @@ public class EnquiryController {
 		model.addAttribute("enquiryForm", enquiryForm);
 		
 		
-		return "add-enquiry";
+		return AppConstant.ADD_ENQUIRY_PAGE;
 	}
 	
 	@GetMapping("filter-enquiries")
