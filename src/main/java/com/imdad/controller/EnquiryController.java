@@ -43,7 +43,6 @@ public class EnquiryController {
 		
 		
 		model.addAttribute("dashboard", dashboardData);
-		System.out.println(dashboardData);
 		
 		return "dashboard";
 	}

@@ -43,7 +43,7 @@ body {
 				</div>
 
 				<form th:action="@{/forgotPassword}" method="POST">
-				<p th:text="${success}" class="text-success"></p>
+				<p th:text="${successMsg}" class="text-success"></p>
 				<p th:text="${errMsg}" class="text-danger"></p>
 					<div class="mb-3">
 						<label class="form-label">Email Address</label> <input

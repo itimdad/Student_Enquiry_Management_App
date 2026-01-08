@@ -29,9 +29,7 @@ public class UserController {
 	public String logout() {
 		
 		session.invalidate();
-		
-		System.out.println("Logout successfull");
-		
+				
 		return "index";
 	}
 	
@@ -99,7 +97,7 @@ public class UserController {
 	
 		String status = service.loginUser(form);
 		
-		if(!status.equals("success")) {
+		if(!status.equals(AppConstant.SUCCESS_STR)) {
 			model.addAttribute(AppConstant.ERR_MSG, status);
 			
 			return "login";
@@ -119,8 +117,8 @@ public class UserController {
 		
     String status = service.forgotPassword(email);
 		
-		if(status.equals("success")) {
-			model.addAttribute("success", "Your password sent check your email");
+		if(status.equals(AppConstant.SUCCESS_STR)) {
+			model.addAttribute(AppConstant.SUCCESS_MSG, "Your password sent check your email");
 		} 
 		else {
 			model.addAttribute(AppConstant.ERR_MSG, status);
