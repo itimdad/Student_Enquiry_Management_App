@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.imdad.binding.LoginForm;
 import com.imdad.binding.SignUpForm;
 import com.imdad.binding.UnlockForm;
+import com.imdad.contants.AppConstant;
 import com.imdad.entity.UserDtlsEntity;
 import com.imdad.repository.UserRepo;
 import com.imdad.util.EmailUtils;
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService {
 		//: send email
 		
 		String to = signUpForm.getEmail();
-		String subject = "Unlock Your Account";
+		String subject = AppConstant.EMAIL_SUBJECT;
 		
 		StringBuffer body = new StringBuffer();
 		
@@ -152,7 +153,7 @@ public class UserServiceImpl implements UserService {
 		
 		//send email message if record available
 		String subject = "Recover Account Password";
-		StringBuffer body = new StringBuffer();
+		StringBuilder body = new StringBuilder();
 		body.append("<h3>Here you find your password which you forgot</h3>");
 		body.append("<br>");
 		body.append(" Your Password: " + entity.getPassword());
