@@ -165,7 +165,7 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		
-		return "success";
+		return AppConstant.SUCCESS_STR;
 	}
 
 	
