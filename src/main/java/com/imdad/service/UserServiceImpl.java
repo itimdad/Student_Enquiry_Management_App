@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		entity.setPassword(unlockForm.getNewPwd());
-		entity.setAccountStatus("UNLOCKED");
+		entity.setAccountStatus(AppConstant.UNLOCKED_STR);
 		
 		repo.save(entity);
 		

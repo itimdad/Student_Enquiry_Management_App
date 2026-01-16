@@ -15,5 +15,7 @@ public class AppConstant {
 		public static final String SUCCESS_STR = "success";
 		
 		public static final String EMAIL_SUBJECT = "Unlock Your Account";
+		
+		public static final String UNLOCKED_STR = "UNLOCKED";
 
 }
